@@ -1,0 +1,282 @@
+/* =============================================================
+   SWAGGER UI FIX - SOLUCIÓN EXTREMA v2.0
+   Máxima especificidad CSS para forzar layout horizontal
+   ============================================================= */
+
+/* RESETEO COMPLETO - Más específico que cualquier CSS de Swagger */
+html body .swagger-ui .wrapper .info,
+html body .swagger-ui .wrapper .scheme-container,
+html body .swagger-ui .wrapper .opblock-tag-section,
+html body .swagger-ui .wrapper .opblock {
+    max-width: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* FORZAR LAYOUT HORIZONTAL CON MÁXIMA ESPECIFICIDAD */
+html body .swagger-ui .opblock .opblock-summary,
+html body .swagger-ui div[class*="opblock"] .opblock-summary,
+html body div[class*="swagger-ui"] .opblock .opblock-summary,
+html body .swagger-ui .opblock .opblock-summary-control,
+html body .swagger-ui .opblock .opblock-summary-path__deprecated,
+html body .swagger-ui .opblock-summary {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    height: 50px !important;
+    padding: 10px 15px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* MÉTODO HTTP - Especificidad máxima */
+html body .swagger-ui .opblock .opblock-summary-method,
+html body .swagger-ui div[class*="opblock"] .opblock-summary-method,
+html body div[class*="swagger-ui"] .opblock .opblock-summary-method,
+html body .swagger-ui .opblock-summary-method {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    width: 80px !important;
+    height: 30px !important;
+    margin: 0 15px 0 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    line-height: 30px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* URL DEL ENDPOINT - Máxima especificidad */
+html body .swagger-ui .opblock .opblock-summary-path,
+html body .swagger-ui div[class*="opblock"] .opblock-summary-path,
+html body div[class*="swagger-ui"] .opblock .opblock-summary-path,
+html body .swagger-ui .opblock-summary-path {
+    flex: 1 1 auto !important;
+    flex-grow: 1 !important;
+    flex-shrink: 1 !important;
+    margin: 0 15px 0 0 !important;
+    padding: 0 !important;
+    font-family: Monaco, Consolas, "Lucida Console", monospace !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #3b4151 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 500px) !important;
+    display: block !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* DESCRIPCIÓN - Máxima especificidad */
+html body .swagger-ui .opblock .opblock-summary-description,
+html body .swagger-ui div[class*="opblock"] .opblock-summary-description,
+html body div[class*="swagger-ui"] .opblock .opblock-summary-description,
+html body .swagger-ui .opblock-summary-description {
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    max-width: 250px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    color: #999 !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* CONTENEDOR PRINCIPAL - Máxima especificidad */
+html body .swagger-ui .opblock,
+html body .swagger-ui div[class*="opblock"],
+html body div[class*="swagger-ui"] .opblock {
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    position: relative !important;
+    display: block !important;
+}
+
+/* EVITAR CUALQUIER GRID O FLEXBOX VERTICAL */
+html body .swagger-ui .opblock .opblock-summary,
+html body .swagger-ui .opblock .opblock-summary * {
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    grid-template-areas: none !important;
+    grid-area: none !important;
+    grid-column: none !important;
+    grid-row: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+/* PREVENIR ALTURA AUTOMÁTICA */
+html body .swagger-ui .opblock.opblock-get .opblock-summary,
+html body .swagger-ui .opblock.opblock-post .opblock-summary,
+html body .swagger-ui .opblock.opblock-put .opblock-summary,
+html body .swagger-ui .opblock.opblock-delete .opblock-summary,
+html body .swagger-ui .opblock.opblock-patch .opblock-summary,
+html body .swagger-ui .opblock.opblock-head .opblock-summary,
+html body .swagger-ui .opblock.opblock-options .opblock-summary {
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    line-height: 50px !important;
+}
+
+/* COLORES ESPECÍFICOS POR MÉTODO */
+html body .swagger-ui .opblock.opblock-get .opblock-summary-method { 
+    background: #61affe !important; 
+    color: white !important; 
+}
+html body .swagger-ui .opblock.opblock-post .opblock-summary-method { 
+    background: #49cc90 !important; 
+    color: white !important; 
+}
+html body .swagger-ui .opblock.opblock-put .opblock-summary-method { 
+    background: #fca130 !important; 
+    color: white !important; 
+}
+html body .swagger-ui .opblock.opblock-delete .opblock-summary-method { 
+    background: #f93e3e !important; 
+    color: white !important; 
+}
+html body .swagger-ui .opblock.opblock-patch .opblock-summary-method { 
+    background: #50e3c2 !important; 
+    color: white !important; 
+}
+
+/* BORDES DE COLORES */
+html body .swagger-ui .opblock.opblock-get { border-left: 5px solid #61affe !important; }
+html body .swagger-ui .opblock.opblock-post { border-left: 5px solid #49cc90 !important; }
+html body .swagger-ui .opblock.opblock-put { border-left: 5px solid #fca130 !important; }
+html body .swagger-ui .opblock.opblock-delete { border-left: 5px solid #f93e3e !important; }
+html body .swagger-ui .opblock.opblock-patch { border-left: 5px solid #50e3c2 !important; }
+
+/* CONTENEDOR PRINCIPAL DE SWAGGER */
+html body .swagger-ui {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    box-sizing: border-box !important;
+}
+
+/* HEADER DE INFORMACIÓN */
+html body .swagger-ui .info {
+    margin: 30px 0 !important;
+    padding: 20px !important;
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 4px !important;
+    background: #f9f9f9 !important;
+    box-sizing: border-box !important;
+}
+
+/* TAGS DE SECCIONES */
+html body .swagger-ui .opblock-tag {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 25px 0 15px 0 !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #e3e3e3 !important;
+    color: #3b4151 !important;
+    box-sizing: border-box !important;
+}
+
+/* DEBUGGING - Marcador visual para verificar que se aplica */
+html body .swagger-ui .opblock .opblock-summary::after {
+    content: "🎯 LAYOUT FIXED" !important;
+    position: absolute !important;
+    top: 2px !important;
+    right: 5px !important;
+    font-size: 8px !important;
+    color: #28a745 !important;
+    background: rgba(40, 167, 69, 0.1) !important;
+    padding: 2px 4px !important;
+    border-radius: 2px !important;
+    font-weight: bold !important;
+    z-index: 1000 !important;
+    pointer-events: none !important;
+}
+
+/* RESPONSIVE - Para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    html body .swagger-ui .opblock .opblock-summary {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        min-height: auto !important;
+        max-height: none !important;
+        height: auto !important;
+        padding: 15px !important;
+    }
+    
+    html body .swagger-ui .opblock .opblock-summary-method {
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
+    
+    html body .swagger-ui .opblock .opblock-summary-path {
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    
+    html body .swagger-ui .opblock .opblock-summary-description {
+        max-width: 100% !important;
+        text-align: left !important;
+    }
+}
+
+/* ÚLTIMA LÍNEA DE DEFENSA - Selector universal con máxima especificidad */
+html body .swagger-ui * {
+    box-sizing: border-box !important;
+}
+
+/* FORZAR RECARGA SIN CACHÉ */
+html body .swagger-ui .opblock-summary {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><rect width="1" height="1" fill="transparent"/></svg>') !important;
+    background-size: 1px 1px !important;
+    background-repeat: no-repeat !important;
+    background-position: -1px -1px !important;
+} 

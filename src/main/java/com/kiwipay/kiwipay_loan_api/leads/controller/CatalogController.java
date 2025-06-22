@@ -20,14 +20,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-@Tag(name = "Catálogos", description = "API para obtener catálogos del sistema")
-@CrossOrigin(originPatterns = "*") // ⭐ PERMITE CUALQUIER ORIGEN
+@Tag(name = "Catálogos", description = "Obtener catálogos del sistema")
+@CrossOrigin(originPatterns = "*")
 public class CatalogController {
     
     private final BackendClient backendClient;
     
     @GetMapping(value = "/clinics", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Obtener lista de clínicas", description = "Retorna todas las clínicas activas")
+    @Operation(summary = "Obtener clínicas", description = "Lista de clínicas activas")
     public Mono<ResponseEntity<ApiResponse<List<BackendClient.ClinicDto>>>> getClinics() {
         log.debug("Solicitando lista de clínicas");
         
@@ -50,7 +50,7 @@ public class CatalogController {
     }
     
     @GetMapping(value = "/medical-specialties", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Obtener lista de especialidades médicas", description = "Retorna todas las especialidades médicas activas")
+    @Operation(summary = "Obtener especialidades médicas", description = "Lista de especialidades activas")
     public Mono<ResponseEntity<ApiResponse<List<BackendClient.MedicalSpecialtyDto>>>> getMedicalSpecialties() {
         log.debug("Solicitando lista de especialidades médicas");
         

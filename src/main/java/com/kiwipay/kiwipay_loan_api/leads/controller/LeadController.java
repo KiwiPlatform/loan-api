@@ -5,11 +5,6 @@ import com.kiwipay.kiwipay_loan_api.leads.dto.response.ApiResponse;
 import com.kiwipay.kiwipay_loan_api.leads.dto.response.LeadResponseDto;
 import com.kiwipay.kiwipay_loan_api.leads.service.LeadService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +19,14 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/v1/leads")
 @RequiredArgsConstructor
-@Tag(name = "Leads", description = "Gestión de leads de préstamos desde landings")
-@CrossOrigin(originPatterns = "*") // ⭐ PERMITE CUALQUIER ORIGEN
+@CrossOrigin(originPatterns = "*")
+@Tag(name = "Leads", description = "Gestión de leads de préstamos")
 public class LeadController {
     
     private final LeadService leadService;
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Crear nuevo lead de préstamo", description = "Recibe los datos del formulario desde el landing")
+    @Operation(summary = "Crear nuevo lead", description = "Procesa un nuevo lead de préstamo")
     public Mono<ResponseEntity<ApiResponse<LeadResponseDto>>> createLead(
             @Valid @RequestBody LeadRequestDto request
     ) {
