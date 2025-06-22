@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.1'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.kiwipay'
@@ -33,8 +33,8 @@ dependencies {
 	// Circuit Breaker
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 	
-	// OpenAPI/Swagger - Versión MÁS ESTABLE según documentación oficial
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
+	// OpenAPI/Swagger - MISMA VERSIÓN que backend principal (que funciona)
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 	
 	// MapStruct para mapeo de objetos
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
@@ -56,20 +56,15 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-// Spring Cloud Version - OFICIAL compatible con Spring Boot 3.4.x
+// Spring Cloud Version - EXACTA para Spring Boot 3.2.0 (como backend principal)
 ext {
-	set('springCloudVersion', "2023.0.5")
+	set('springCloudVersion', "2023.0.0")
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
-}
-
-// Configuración OFICIAL para Spring Boot 3.2+ - Parameter Name Discovery
-tasks.withType(JavaCompile) {
-	options.compilerArgs += ['-parameters']
 }
 
 tasks.named('test') {
