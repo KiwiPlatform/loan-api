@@ -207,6 +207,15 @@ Si ves errores como `'2000 ' is not a valid duration`:
 - ✅ **CORRECTO**: `max-attempts=3`  
 - ❌ **INCORRECTO**: `max-retry-attempts=3`
 
+### **NUEVO: Error de Espacios en Blanco Trailing**
+Si ves el error exacto `'2000ms ' is not a valid duration`:
+- **Problema**: Hay espacios en blanco al final de valores en archivos `.properties`
+- **Síntoma**: `Value: "2000ms "` (nota el espacio al final)
+- **Solución**: Archivos recreados sin espacios trailing ✅
+- **Prevenir**: Configura tu IDE para eliminar espacios trailing automáticamente
+
+Ver archivo `WHITESPACE_FIX.md` para detalles completos del fix.
+
 ### Si hay problemas de CORS:
 - Verifica `CORS_ALLOWED_ORIGINS` en variables de entorno
 - Para desarrollo, usa `*`
