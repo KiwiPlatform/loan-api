@@ -73,7 +73,7 @@ CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:4200,http://localhos
 KIWIPAY_BACKEND_TIMEOUT_CONNECT=30s
 KIWIPAY_BACKEND_TIMEOUT_READ=60s
 KIWIPAY_BACKEND_RETRY_MAX_ATTEMPTS=3
-KIWIPAY_BACKEND_RETRY_BACKOFF_DELAY=1s
+KIWIPAY_BACKEND_RETRY_BACKOFF_DELAY=1000ms
 
 # ===================================================================
 # CONFIGURACIÓN DE LOGGING PARA PRODUCCIÓN
@@ -199,6 +199,13 @@ LOGGING_LEVEL_COM_KIWIPAY=INFO
 1. Revisa los **logs** en Render Dashboard
 2. Verifica que `KIWIPAY_BACKEND_BASE_URL` sea correcta
 3. Asegúrate que el backend principal esté funcionando
+
+### Error de Resilience4j Retry Properties:
+Si ves errores como `'2000 ' is not a valid duration`:
+- ✅ **CORRECTO**: `wait-duration=2000ms`
+- ❌ **INCORRECTO**: `wait-duration=2000`
+- ✅ **CORRECTO**: `max-attempts=3`  
+- ❌ **INCORRECTO**: `max-retry-attempts=3`
 
 ### Si hay problemas de CORS:
 - Verifica `CORS_ALLOWED_ORIGINS` en variables de entorno

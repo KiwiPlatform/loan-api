@@ -92,4 +92,5 @@ CORS_ALLOWED_ORIGINS=https://tu-frontend.com,https://tu-app.com
 ⚠️ **CORS en Producción**: Obligatorio especificar dominios específicos  
 ⚠️ **Backend URL**: Debe estar configurada en variables de entorno  
 ⚠️ **Health Check**: En prod, detalles solo con autorización  
-⚠️ **Logging**: En prod, menos verbose para mejor performance 
+⚠️ **Logging**: En prod, menos verbose para mejor performance  
+⚠️ **Resilience4j**: Usar `max-attempts` (no `max-retry-attempts`) y duration con unidades (`2000ms` no `2000`) 
