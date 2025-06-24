@@ -1,11 +1,9 @@
 package com.kiwipay.kiwipay_loan_api.leads.controller;
 
 import com.kiwipay.kiwipay_loan_api.leads.dto.request.LeadRequestDto;
-import com.kiwipay.kiwipay_loan_api.leads.dto.request.SimpleLeadRequest;
 import com.kiwipay.kiwipay_loan_api.leads.dto.response.ApiResponse;
 import com.kiwipay.kiwipay_loan_api.leads.dto.response.LeadResponseDto;
 import com.kiwipay.kiwipay_loan_api.leads.service.LeadService;
-import com.kiwipay.kiwipay_loan_api.leads.service.SimpleLeadService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,7 +24,6 @@ import reactor.core.publisher.Mono;
 public class LeadController {
     
     private final LeadService leadService;
-    private final SimpleLeadService simpleLeadService;
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Crear nuevo lead", description = "Procesa un nuevo lead de préstamo")
@@ -42,18 +39,5 @@ public class LeadController {
                 );
     }
     
-    @PostMapping(value = "/simple", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Crear lead simple", description = "Procesa un lead desde formulario de Squarespace (sin validaciones complejas)")
-    public Mono<ResponseEntity<ApiResponse<LeadResponseDto>>> createSimpleLead(
-            @RequestBody SimpleLeadRequest request
-    ) {
-        log.info("Recibiendo lead simple desde Squarespace. DNI: {}, Cliente: {}", 
-                request.getDni(), request.getClientName());
-        
-        return simpleLeadService.processSimpleLead(request)
-                .map(response -> ResponseEntity
-                        .status(response.isOk() ? HttpStatus.CREATED : HttpStatus.valueOf(response.getStatus()))
-                        .body(response)
-                );
-    }
+    // Endpoint /simple eliminado - ahora usamos /api/v1/squarespace/lead
 } 
