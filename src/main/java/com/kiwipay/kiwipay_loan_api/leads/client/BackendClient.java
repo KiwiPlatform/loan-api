@@ -1,6 +1,7 @@
 package com.kiwipay.kiwipay_loan_api.leads.client;
 
 import com.kiwipay.kiwipay_loan_api.leads.dto.request.BackendLeadRequest;
+import com.kiwipay.kiwipay_loan_api.leads.dto.request.SquarespaceBackendRequest;
 import com.kiwipay.kiwipay_loan_api.leads.dto.response.LeadResponseDto;
 import reactor.core.publisher.Mono;
 
@@ -9,6 +10,9 @@ import java.util.List;
 public interface BackendClient {
     
     Mono<LeadResponseDto> createLead(BackendLeadRequest request);
+    
+    // Nuevo método específico para el formulario de Squarespace
+    Mono<LeadResponseDto> createSquarespaceLead(SquarespaceBackendRequest request);
     
     Mono<List<ClinicDto>> getClinics();
     

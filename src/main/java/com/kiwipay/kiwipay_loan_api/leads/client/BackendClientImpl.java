@@ -1,6 +1,7 @@
 package com.kiwipay.kiwipay_loan_api.leads.client;
 
 import com.kiwipay.kiwipay_loan_api.leads.dto.request.BackendLeadRequest;
+import com.kiwipay.kiwipay_loan_api.leads.dto.request.SquarespaceBackendRequest;
 import com.kiwipay.kiwipay_loan_api.leads.dto.response.LeadResponseDto;
 import com.kiwipay.kiwipay_loan_api.leads.exception.ExternalServiceException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -27,6 +28,9 @@ public class BackendClientImpl implements BackendClient {
     @Value("${kiwipay.backend.endpoints.create-lead}")
     private String createLeadEndpoint;
     
+    @Value("${kiwipay.backend.endpoints.create-squarespace-lead:/leads/squarespace}")
+    private String createSquarespaceLeadEndpoint;
+    
     @Value("${kiwipay.backend.endpoints.get-clinics}")
     private String getClinicsEndpoint;
     
@@ -47,6 +51,24 @@ public class BackendClientImpl implements BackendClient {
                 .bodyToMono(LeadResponseDto.class)
                 .doOnSuccess(response -> log.info("Lead creado exitosamente: ID={}", response.getId()))
                 .doOnError(error -> log.error("Error creando lead: {}", error.getMessage()))
+                .onErrorMap(this::handleWebClientError);
+    }
+    
+    @Override
+    @CircuitBreaker(name = "backend", fallbackMethod = "createSquarespaceLeadFallback")
+    @Retry(name = "backend")
+    public Mono<LeadResponseDto> createSquarespaceLead(SquarespaceBackendRequest request) {
+        log.info("Enviando lead de Squarespace al backend principal: DNI={}, Cliente={}", 
+                request.getDni(), request.getClientName());
+        
+        return backendWebClient
+                .post()
+                .uri(createSquarespaceLeadEndpoint) // Endpoint específico para Squarespace
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(LeadResponseDto.class)
+                .doOnSuccess(response -> log.info("Lead de Squarespace creado exitosamente: ID={}", response.getId()))
+                .doOnError(error -> log.error("Error creando lead de Squarespace: {}", error.getMessage()))
                 .onErrorMap(this::handleWebClientError);
     }
     
@@ -83,6 +105,14 @@ public class BackendClientImpl implements BackendClient {
     // Métodos de fallback para Circuit Breaker
     private Mono<LeadResponseDto> createLeadFallback(BackendLeadRequest request, Exception ex) {
         log.error("Circuit breaker activado para createLead. Error: {}", ex.getMessage());
+        return Mono.error(new ExternalServiceException(
+                "El servicio principal no está disponible temporalmente. Por favor, intente más tarde.",
+                HttpStatus.SERVICE_UNAVAILABLE
+        ));
+    }
+    
+    private Mono<LeadResponseDto> createSquarespaceLeadFallback(SquarespaceBackendRequest request, Exception ex) {
+        log.error("Circuit breaker activado para createSquarespaceLead. Error: {}", ex.getMessage());
         return Mono.error(new ExternalServiceException(
                 "El servicio principal no está disponible temporalmente. Por favor, intente más tarde.",
                 HttpStatus.SERVICE_UNAVAILABLE

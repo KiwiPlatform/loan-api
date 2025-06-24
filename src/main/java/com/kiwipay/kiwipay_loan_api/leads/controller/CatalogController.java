@@ -17,10 +17,10 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Slf4j
-@RestController
+// @RestController  // TEMPORALMENTE DESACTIVADO
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-@Tag(name = "Catálogos", description = "Obtener catálogos del sistema")
+@Tag(name = "Catálogos", description = "Obtener catálogos del sistema - TEMPORALMENTE DESACTIVADO")
 @CrossOrigin(originPatterns = "*")
 public class CatalogController {
     
